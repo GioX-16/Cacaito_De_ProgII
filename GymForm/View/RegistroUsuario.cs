@@ -24,9 +24,26 @@ namespace GymForm
             WinCerrar = true;
         }
 
-        private void RegistroUsuario_Load(object sender, EventArgs e)
+        private void btnRegistrar_Click(object sender, EventArgs e)
         {
+            if (!Validaciones())
+            {
+                MessageBox.Show("Registro completo");
+                this.Close();
+            }
+            else
+                MessageBox.Show("Papi rey, llene todos los campos pórfavor");
+        }
 
+        private bool Validaciones()
+        {
+            if (string.IsNullOrEmpty(txtNombre.Text)) return true;
+            if (string.IsNullOrEmpty(txtApelido.Text)) return true;
+            if (string.IsNullOrEmpty(txtUsuario.Text)) return true;
+            if (string.IsNullOrEmpty(txtContra.Text)) return true;
+            if (string.IsNullOrEmpty(txtTelefono.Text)) return true;
+            if (string.IsNullOrEmpty(txtCorreo.Text)) return true;
+            return false;
         }
     }
 }

@@ -19,7 +19,7 @@ namespace GymForm
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if (cbxAdmCli.SelectedItem == "Cliente")
+            if (cbxAdmCli.SelectedItem.ToString() == "Cliente")
             {
                 if (!string.IsNullOrEmpty(txtUser.Text) && !string.IsNullOrEmpty(txtPassword.Text)) //Solo va a entrar al if si las dos condiciones retornan distinto de true
                 {
@@ -46,7 +46,6 @@ namespace GymForm
                     MessageBox.Show("No se puede encontrar el usuario, tiene que registrarse primero.");
             }
         }
-
         
         private void btnRegistrar_Click(object sender, EventArgs e)
         {

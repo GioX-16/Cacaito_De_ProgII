@@ -38,12 +38,12 @@ namespace GymForm
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtTelefono = new System.Windows.Forms.TextBox();
+            this.txtCorreo = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtContra = new System.Windows.Forms.TextBox();
+            this.txtUsuario = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnRegistrar
@@ -58,6 +58,7 @@ namespace GymForm
             this.btnRegistrar.TabIndex = 29;
             this.btnRegistrar.Text = "Registrar";
             this.btnRegistrar.UseVisualStyleBackColor = false;
+            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 
             // label2
             // 
@@ -124,19 +125,19 @@ namespace GymForm
             this.label5.TabIndex = 32;
             this.label5.Text = "Correo";
             // 
-            // textBox1
+            // txtTelefono
             // 
-            this.textBox1.Location = new System.Drawing.Point(135, 325);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(151, 20);
-            this.textBox1.TabIndex = 33;
+            this.txtTelefono.Location = new System.Drawing.Point(135, 325);
+            this.txtTelefono.Name = "txtTelefono";
+            this.txtTelefono.Size = new System.Drawing.Size(151, 20);
+            this.txtTelefono.TabIndex = 33;
             // 
-            // textBox2
+            // txtCorreo
             // 
-            this.textBox2.Location = new System.Drawing.Point(135, 383);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(151, 20);
-            this.textBox2.TabIndex = 34;
+            this.txtCorreo.Location = new System.Drawing.Point(135, 383);
+            this.txtCorreo.Name = "txtCorreo";
+            this.txtCorreo.Size = new System.Drawing.Size(151, 20);
+            this.txtCorreo.TabIndex = 34;
             // 
             // label6
             // 
@@ -158,19 +159,19 @@ namespace GymForm
             this.label7.TabIndex = 37;
             this.label7.Text = "Usuario";
             // 
-            // textBox3
+            // txtContra
             // 
-            this.textBox3.Location = new System.Drawing.Point(135, 144);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(151, 20);
-            this.textBox3.TabIndex = 36;
+            this.txtContra.Location = new System.Drawing.Point(135, 144);
+            this.txtContra.Name = "txtContra";
+            this.txtContra.Size = new System.Drawing.Size(151, 20);
+            this.txtContra.TabIndex = 36;
             // 
-            // textBox4
+            // txtUsuario
             // 
-            this.textBox4.Location = new System.Drawing.Point(135, 85);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(151, 20);
-            this.textBox4.TabIndex = 35;
+            this.txtUsuario.Location = new System.Drawing.Point(135, 85);
+            this.txtUsuario.Name = "txtUsuario";
+            this.txtUsuario.Size = new System.Drawing.Size(151, 20);
+            this.txtUsuario.TabIndex = 35;
             // 
             // RegistroUsuario
             // 
@@ -180,10 +181,10 @@ namespace GymForm
             this.ClientSize = new System.Drawing.Size(375, 512);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtContra);
+            this.Controls.Add(this.txtUsuario);
+            this.Controls.Add(this.txtCorreo);
+            this.Controls.Add(this.txtTelefono);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -195,7 +196,6 @@ namespace GymForm
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "RegistroUsuario";
             this.Text = "Registro Usuario";
-            this.Load += new System.EventHandler(this.RegistroUsuario_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -210,11 +210,11 @@ namespace GymForm
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtTelefono;
+        private System.Windows.Forms.TextBox txtCorreo;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtContra;
+        private System.Windows.Forms.TextBox txtUsuario;
     }
 }
