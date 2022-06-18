@@ -1,0 +1,301 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GymModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Gym.dbo.Cliente_Rutina' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="Cliente_Rutina">
+          <Key>
+            <PropertyRef Name="IdCliente" />
+          </Key>
+          <Property Name="IdCliente" Type="int" Nullable="false" />
+          <Property Name="idRutinas" Type="int" />
+        </EntityType>
+        <EntityType Name="Detalle_Cliente">
+          <Key>
+            <PropertyRef Name="IdCliente" />
+          </Key>
+          <Property Name="IdCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Idregistro" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Apellido" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Correo" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Login_Usuario">
+          <Key>
+            <PropertyRef Name="Idregistro" />
+          </Key>
+          <Property Name="Idregistro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Roll" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rutina">
+          <Key>
+            <PropertyRef Name="IdRutinas" />
+          </Key>
+          <Property Name="IdRutinas" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Cliente_R__IdCli__3B75D760">
+          <End Role="Detalle_Cliente" Type="Self.Detalle_Cliente" Multiplicity="1" />
+          <End Role="Cliente_Rutina" Type="Self.Cliente_Rutina" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Detalle_Cliente">
+              <PropertyRef Name="IdCliente" />
+            </Principal>
+            <Dependent Role="Cliente_Rutina">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cliente_R__IdCli__5AEE82B9">
+          <End Role="Detalle_Cliente" Type="Self.Detalle_Cliente" Multiplicity="1" />
+          <End Role="Cliente_Rutina" Type="Self.Cliente_Rutina" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Detalle_Cliente">
+              <PropertyRef Name="IdCliente" />
+            </Principal>
+            <Dependent Role="Cliente_Rutina">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cliente_R__idRut__3C69FB99">
+          <End Role="Rutina" Type="Self.Rutina" Multiplicity="0..1" />
+          <End Role="Cliente_Rutina" Type="Self.Cliente_Rutina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rutina">
+              <PropertyRef Name="IdRutinas" />
+            </Principal>
+            <Dependent Role="Cliente_Rutina">
+              <PropertyRef Name="idRutinas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cliente_R__idRut__5BE2A6F2">
+          <End Role="Rutina" Type="Self.Rutina" Multiplicity="0..1" />
+          <End Role="Cliente_Rutina" Type="Self.Cliente_Rutina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rutina">
+              <PropertyRef Name="IdRutinas" />
+            </Principal>
+            <Dependent Role="Cliente_Rutina">
+              <PropertyRef Name="idRutinas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detalle_C__Idreg__3D5E1FD2">
+          <End Role="Login_Usuario" Type="Self.Login_Usuario" Multiplicity="1" />
+          <End Role="Detalle_Cliente" Type="Self.Detalle_Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Login_Usuario">
+              <PropertyRef Name="Idregistro" />
+            </Principal>
+            <Dependent Role="Detalle_Cliente">
+              <PropertyRef Name="Idregistro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GymModelStoreContainer">
+          <EntitySet Name="Detalle_Cliente" EntityType="Self.Detalle_Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Login_Usuario" EntityType="Self.Login_Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rutina" EntityType="Self.Rutina" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cliente_Rutina" EntityType="Self.Cliente_Rutina" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Cliente_Rutina].[IdCliente] AS [IdCliente], 
+    [Cliente_Rutina].[idRutinas] AS [idRutinas]
+    FROM [dbo].[Cliente_Rutina] AS [Cliente_Rutina]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Cliente_R__IdCli__3B75D760" Association="Self.FK__Cliente_R__IdCli__3B75D760">
+            <End Role="Detalle_Cliente" EntitySet="Detalle_Cliente" />
+            <End Role="Cliente_Rutina" EntitySet="Cliente_Rutina" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cliente_R__IdCli__5AEE82B9" Association="Self.FK__Cliente_R__IdCli__5AEE82B9">
+            <End Role="Detalle_Cliente" EntitySet="Detalle_Cliente" />
+            <End Role="Cliente_Rutina" EntitySet="Cliente_Rutina" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cliente_R__idRut__3C69FB99" Association="Self.FK__Cliente_R__idRut__3C69FB99">
+            <End Role="Rutina" EntitySet="Rutina" />
+            <End Role="Cliente_Rutina" EntitySet="Cliente_Rutina" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cliente_R__idRut__5BE2A6F2" Association="Self.FK__Cliente_R__idRut__5BE2A6F2">
+            <End Role="Rutina" EntitySet="Rutina" />
+            <End Role="Cliente_Rutina" EntitySet="Cliente_Rutina" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detalle_C__Idreg__3D5E1FD2" Association="Self.FK__Detalle_C__Idreg__3D5E1FD2">
+            <End Role="Login_Usuario" EntitySet="Login_Usuario" />
+            <End Role="Detalle_Cliente" EntitySet="Detalle_Cliente" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GymModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Detalle_Cliente">
+          <Key>
+            <PropertyRef Name="IdCliente" />
+          </Key>
+          <Property Name="IdCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Idregistro" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Correo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Cliente_Rutina" Relationship="Self.FK__Cliente_R__IdCli__3B75D760" FromRole="Detalle_Cliente" ToRole="Cliente_Rutina" />
+          <NavigationProperty Name="Login_Usuario" Relationship="Self.FK__Detalle_C__Idreg__3D5E1FD2" FromRole="Detalle_Cliente" ToRole="Login_Usuario" />
+        </EntityType>
+        <EntityType Name="Login_Usuario">
+          <Key>
+            <PropertyRef Name="Idregistro" />
+          </Key>
+          <Property Name="Idregistro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Roll" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Detalle_Cliente" Relationship="Self.FK__Detalle_C__Idreg__3D5E1FD2" FromRole="Login_Usuario" ToRole="Detalle_Cliente" />
+        </EntityType>
+        <EntityType Name="Rutina">
+          <Key>
+            <PropertyRef Name="IdRutinas" />
+          </Key>
+          <Property Name="IdRutinas" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Cliente_Rutina" Relationship="Self.FK__Cliente_R__idRut__3C69FB99" FromRole="Rutina" ToRole="Cliente_Rutina" />
+        </EntityType>
+        <EntityType Name="Cliente_Rutina">
+          <Key>
+            <PropertyRef Name="IdCliente" />
+          </Key>
+          <Property Name="IdCliente" Type="Int32" Nullable="false" />
+          <Property Name="idRutinas" Type="Int32" />
+          <NavigationProperty Name="Detalle_Cliente" Relationship="Self.FK__Cliente_R__IdCli__3B75D760" FromRole="Cliente_Rutina" ToRole="Detalle_Cliente" />
+          <NavigationProperty Name="Rutina" Relationship="Self.FK__Cliente_R__idRut__3C69FB99" FromRole="Cliente_Rutina" ToRole="Rutina" />
+        </EntityType>
+        <Association Name="FK__Cliente_R__IdCli__3B75D760">
+          <End Role="Detalle_Cliente" Type="Self.Detalle_Cliente" Multiplicity="1" />
+          <End Role="Cliente_Rutina" Type="Self.Cliente_Rutina" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Detalle_Cliente">
+              <PropertyRef Name="IdCliente" />
+            </Principal>
+            <Dependent Role="Cliente_Rutina">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detalle_C__Idreg__3D5E1FD2">
+          <End Role="Login_Usuario" Type="Self.Login_Usuario" Multiplicity="1" />
+          <End Role="Detalle_Cliente" Type="Self.Detalle_Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Login_Usuario">
+              <PropertyRef Name="Idregistro" />
+            </Principal>
+            <Dependent Role="Detalle_Cliente">
+              <PropertyRef Name="Idregistro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cliente_R__idRut__3C69FB99">
+          <End Role="Rutina" Type="Self.Rutina" Multiplicity="0..1" />
+          <End Role="Cliente_Rutina" Type="Self.Cliente_Rutina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rutina">
+              <PropertyRef Name="IdRutinas" />
+            </Principal>
+            <Dependent Role="Cliente_Rutina">
+              <PropertyRef Name="idRutinas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GymEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Detalle_Cliente" EntityType="Self.Detalle_Cliente" />
+          <EntitySet Name="Login_Usuario" EntityType="Self.Login_Usuario" />
+          <EntitySet Name="Rutina" EntityType="Self.Rutina" />
+          <EntitySet Name="Cliente_Rutina" EntityType="Self.Cliente_Rutina" />
+          <AssociationSet Name="FK__Cliente_R__IdCli__3B75D760" Association="Self.FK__Cliente_R__IdCli__3B75D760">
+            <End Role="Detalle_Cliente" EntitySet="Detalle_Cliente" />
+            <End Role="Cliente_Rutina" EntitySet="Cliente_Rutina" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detalle_C__Idreg__3D5E1FD2" Association="Self.FK__Detalle_C__Idreg__3D5E1FD2">
+            <End Role="Login_Usuario" EntitySet="Login_Usuario" />
+            <End Role="Detalle_Cliente" EntitySet="Detalle_Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cliente_R__idRut__3C69FB99" Association="Self.FK__Cliente_R__idRut__3C69FB99">
+            <End Role="Rutina" EntitySet="Rutina" />
+            <End Role="Cliente_Rutina" EntitySet="Cliente_Rutina" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GymModelStoreContainer" CdmEntityContainer="GymEntities">
+          <EntitySetMapping Name="Detalle_Cliente">
+            <EntityTypeMapping TypeName="GymModel.Detalle_Cliente">
+              <MappingFragment StoreEntitySet="Detalle_Cliente">
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="Idregistro" ColumnName="Idregistro" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Login_Usuario">
+            <EntityTypeMapping TypeName="GymModel.Login_Usuario">
+              <MappingFragment StoreEntitySet="Login_Usuario">
+                <ScalarProperty Name="Idregistro" ColumnName="Idregistro" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Roll" ColumnName="Roll" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rutina">
+            <EntityTypeMapping TypeName="GymModel.Rutina">
+              <MappingFragment StoreEntitySet="Rutina">
+                <ScalarProperty Name="IdRutinas" ColumnName="IdRutinas" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cliente_Rutina">
+            <EntityTypeMapping TypeName="GymModel.Cliente_Rutina">
+              <MappingFragment StoreEntitySet="Cliente_Rutina">
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="idRutinas" ColumnName="idRutinas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
