@@ -144,9 +144,9 @@ namespace GymForm
             this.label6.Font = new System.Drawing.Font("Mongolian Baiti", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(45, 127);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(63, 14);
+            this.label6.Size = new System.Drawing.Size(78, 14);
             this.label6.TabIndex = 38;
-            this.label6.Text = "Apellido";
+            this.label6.Text = "Contraseña";
             // 
             // label7
             // 
@@ -156,7 +156,7 @@ namespace GymForm
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(56, 14);
             this.label7.TabIndex = 37;
-            this.label7.Text = "Nombre";
+            this.label7.Text = "Usuario";
             // 
             // textBox3
             // 
